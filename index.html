@@ -6,6 +6,7 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
     <link rel="stylesheet" href="css/main.css">
     <script src="src/parallax.js"></script>
     <script src="node_modules/angular/angular.js"></script>
@@ -14,12 +15,18 @@
     <script src="js/mainCtrl.js"></script>
 </head>
 <body ng-controller="mainCtrl as main" >
-<header>
-    <div id="scene">
-        <div class="layer" data-depth="0.00"><img class="headerImg" src="src/images/MyGradient.png"></div>
+<header> <!--using Parallax.js for parallax on header-->
+    <div id="scene" data-hover-only="true"
+         data-limit-x="40"
+         data-limit-y="40"
+         data-relative-input="true">
+        <div class="layer" data-depth="0.00"><img class="layerBackground" src="src/images/Background.jpg"></div>
+        <div class="layer" data-depth="0.30"><img class="my-layer layer2" src="src/images/Avalon.png" ></div>
+        <div class="layer" data-depth="0.60"><img class="my-layer layer3" src="src/images/Companies.png" ></div>
     </div>
-
 </header>
+<section>
 
+</section>
 </body>
 </html>

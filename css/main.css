@@ -1,7 +1,18 @@
 body{
     margin: 0;
 }
-.headerImg{
+.layerBackground{
     width: 100vw;
     height: 15vh;
+}
+.layer2{
+    width: 5vw;
+    height: 10vh;
+    margin: 30%;
+}
+.layer3{
+    width: 5vw;
+    height: 2vh;
+    margin: 40%;
+    margin-left: 1200%;
 }
