@@ -1,11 +1,13 @@
 (function () {
     angular
         .module('avalonApp')
-        .controller('mainCtrl', [mainCtrl]);
+        .controller('mainCtrl', ['crudService', mainCtrl]);
 
 
-    function mainCtrl() {
+    function mainCtrl(crudService) {
         var vm = this;
+        console.log(crudService.getItems('/companies'));
+
 
         var scene = document.getElementById('scene');
         var parallax = new Parallax(scene)

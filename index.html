@@ -6,27 +6,45 @@
           content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
-    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"> <!-- Bootstrap 3 -->
+    <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"><!-- UI-bootstrap library-->
+    <link rel="stylesheet" href="node_modules/angular-loading-bar/build/loading-bar.css"> <!--Loading bar styles-->
+
     <link rel="stylesheet" href="css/main.css">
-    <script src="src/parallax.js"></script>
-    <script src="node_modules/angular/angular.js"></script>
+
+    <script src="node_modules/angular/angular.js"></script><!--angular -->
+    <script src="node_modules/angular-animate/angular-animate.js"></script><!--ngAnimate-->
+    <script src="node_modules/angular-loading-bar/build/loading-bar.js"></script><!--Loading bar-->
+
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script> <!-- UI-bootstrap library-->
+    <script src="src/parallax.js"></script> <!--using Parallax.js for parallax on header-->
 
     <script src="js/app.js"></script>
+    <script src="js/constRest.js"></script>
+    <script src="js/crudService.js"></script>
     <script src="js/mainCtrl.js"></script>
+
 </head>
 <body ng-controller="mainCtrl as main" >
-<header> <!--using Parallax.js for parallax on header-->
+<header>
     <div id="scene" data-hover-only="true"
          data-limit-x="40"
          data-limit-y="40"
          data-relative-input="true">
         <div class="layer" data-depth="0.00"><img class="layerBackground" src="src/images/Background.jpg"></div>
-        <div class="layer" data-depth="0.30"><img class="my-layer layer2" src="src/images/Avalon.png" ></div>
-        <div class="layer" data-depth="0.60"><img class="my-layer layer3" src="src/images/Companies.png" ></div>
+        <div class="layer  layer2" data-depth="0.30"><img class="my-layer imgLayer2" src="src/images/Avalon.png" ></div>
+        <div class="layer layer3" data-depth="0.60"><img class="my-layer imgLayer3" src="src/images/Companies.png" ></div>
     </div>
 </header>
-<section>
-
+<div id="loading-bar-container"></div>
+<section class="companies">
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-md-12 text-center headerBorder">
+            <h2 class="listCompanies">List of companies</h2>
+        </div>
+    </div>
+</div>
 </section>
 </body>
 </html>

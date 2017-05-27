@@ -6,13 +6,35 @@ body{
     height: 15vh;
 }
 .layer2{
-    width: 5vw;
-    height: 10vh;
-    margin: 30%;
+    margin: 3vmin;
 }
 .layer3{
+    margin-top: 7vh;
+    margin-left: 50vw;
+}
+.imgLayer2{
+    width: 5vw;
+    height: 10vh;
+}
+.imgLayer3{
     width: 5vw;
     height: 2vh;
-    margin: 40%;
-    margin-left: 1200%;
+}
+.listCompanies{
+    font-size: 5vmin;
+
+}
+.headerBorder{
+    border-bottom:solid darkslategrey ;
+}
+section.companies{
+    border: solid black medium;
+    height: 80vh;
+    width: 70vw;
+    display: inline-block;
+    margin: 1%;
+}
+#loading-bar-container {
+    height: 20px;
+    position: relative;
 }
