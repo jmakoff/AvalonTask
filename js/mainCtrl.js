@@ -16,17 +16,45 @@
 
         getCompanies();
         vm.findByName = function () {/*filtration here becouse had problems with pagination when tried to resolve with "| filter"*/
+            var filteredArray = [];
             if (vm.nameToFilter) {
-                var expr = new RegExp(vm.nameToFilter, 'i');
-                var filteredArray = [];
-                for (i = 0; i < vm.companies.success.length; i++) {
-                    if (expr.test(vm.companies.success[i].companyName)) {
-                        filteredArray.push(vm.companies.success[i]);
+                crudService.getItems('/companies').then(function (resp) { /*it used to work with full array*/
+                    var companiesForFilter = resp.data;
+                    var expr = new RegExp(vm.nameToFilter, 'i');
+
+                    for (i = 0; i < companiesForFilter.success.length; i++) {
+                        if (expr.test(companiesForFilter.success[i].companyName)) {
+                            filteredArray.push(companiesForFilter.success[i]);
+                        }
                     }
-                }
-                vm.companies.success = filteredArray
-            } else {
+                    vm.companies.success = filteredArray
+                });
+            }
+
+            else {
                 getCompanies()
+            }
+        };
+        vm.filterByProduct = function () {
+            var filteredArray = [];
+            if (vm.productToSearch) {
+                crudService.getItems('/companies').then(function (resp) {
+                    var companiesForFilter = resp.data;
+                    var expr = new RegExp(vm.productToSearch, 'i');
+                    companiesLoop:
+                    for (var i = 0; i < companiesForFilter.success.length; i++) {
+                        if (companiesForFilter.success[i].companyGoods) {/*test for companyGoods not null*/
+                            for (var j = 0; j < companiesForFilter.success[i].companyGoods.length; j++) {/*loop throw each company product*/
+                                if (expr.test(companiesForFilter.success[i].companyGoods[j])) {
+                                    filteredArray.push(companiesForFilter.success[i]);
+                                    continue companiesLoop; /*preventing of add two same objects*/
+                                }
+                            }
+
+                        }
+                    }
+                    vm.companies.success = filteredArray;
+                })
             }
         };
 

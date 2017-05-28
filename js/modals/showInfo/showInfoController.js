@@ -15,7 +15,7 @@
                 vm.newGood = '';
             };
             vm.send = function () {
-                vm.companyName = vm.newCompanyName;
+
                 var body = {
                         companyName: vm.newCompanyName,
                         companyGoods: vm.companyGoods
@@ -26,6 +26,7 @@
                     console.log(resp);
                     vm.editMode = false;
                     myData.updateCompanies();
+                    vm.companyName = vm.newCompanyName;
                 });
             };
             vm.cancel = function () {
