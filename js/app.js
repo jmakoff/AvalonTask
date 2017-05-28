@@ -1,1 +1,1 @@
-angular.module('avalonApp', ['angular-loading-bar', 'ngAnimate']);
+angular.module('avalonApp', ['angular-loading-bar', 'ngAnimate', 'ui.bootstrap']);

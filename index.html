@@ -7,7 +7,8 @@
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Document</title>
     <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css"> <!-- Bootstrap 3 -->
-    <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css"><!-- UI-bootstrap library-->
+    <link rel="stylesheet" href="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-csp.css">
+    <!-- UI-bootstrap library-->
     <link rel="stylesheet" href="node_modules/angular-loading-bar/build/loading-bar.css"> <!--Loading bar styles-->
 
     <link rel="stylesheet" href="css/main.css">
@@ -16,35 +17,101 @@
     <script src="node_modules/angular-animate/angular-animate.js"></script><!--ngAnimate-->
     <script src="node_modules/angular-loading-bar/build/loading-bar.js"></script><!--Loading bar-->
 
-    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap.js"></script> <!-- UI-bootstrap library-->
+    <script src="node_modules/angular-ui-bootstrap/dist/ui-bootstrap-tpls.js"></script> <!-- UI-bootstrap library-->
     <script src="src/parallax.js"></script> <!--using Parallax.js for parallax on header-->
 
     <script src="js/app.js"></script>
     <script src="js/constRest.js"></script>
     <script src="js/crudService.js"></script>
     <script src="js/mainCtrl.js"></script>
+    <script src="js/modals/showInfo/showInfoController.js"></script>
+
 
 </head>
-<body ng-controller="mainCtrl as main" >
+<body ng-controller="mainCtrl as main" ng-cloak>
 <header>
     <div id="scene" data-hover-only="true"
          data-limit-x="40"
          data-limit-y="40"
          data-relative-input="true">
         <div class="layer" data-depth="0.00"><img class="layerBackground" src="src/images/Background.jpg"></div>
-        <div class="layer  layer2" data-depth="0.30"><img class="my-layer imgLayer2" src="src/images/Avalon.png" ></div>
-        <div class="layer layer3" data-depth="0.60"><img class="my-layer imgLayer3" src="src/images/Companies.png" ></div>
+        <div class="layer  layer2" data-depth="0.30"><img class="my-layer imgLayer2" src="src/images/Avalon.png"></div>
+        <div class="layer layer3" data-depth="0.60"><img class="my-layer imgLayer3" src="src/images/Companies.png">
+        </div>
     </div>
 </header>
 <div id="loading-bar-container"></div>
-<section class="companies">
-<div class="container-fluid">
-    <div class="row">
-        <div class="col-md-12 text-center headerBorder">
-            <h2 class="listCompanies">List of companies</h2>
-        </div>
+<div class="bodyContent container-fluid">
+    <div class="contentCompanies">
+        <section class="companies">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center headerBorder">
+                        <h2 class="listCompanies">List of companies</h2>
+                    </div>
+                </div>
+
+                <div class="row"
+                     ng-click="main.showBtns($index)"
+                     ng-repeat="company in main.companies.success.slice(((main.currentPage-1)*main.itemsPerPage), ((main.currentPage)*main.itemsPerPage))">
+                    <div class="row">
+                        <div class=" companyItem"><p class="companyName">{{company.companyName}}</p></div>
+                        <div ng-show="main.btnIndex == $index" class="row">
+                            <button  ng-click="main.open(company.companyName, $index)" class="col-md-offset-2 col-md-3 btn btn-success btn-xs">Show Info & Edit company</button>
+                            <button class="col-md-offset-1 col-md-3 btn btn-danger btn-xs" ng-click="main.deleteCompany($index)">Delete company</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+
+        <section class="filterData">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center headerBorder">
+                        <h2 class="fontFilter">Filter by Name</h2>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-md-12 findNameInput">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search by name" ng-model="main.nameToFilter">
+                            <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="button" ng-click="main.findByName()"><span
+                                    class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-12 text-center headerBorder headerBorderProducts">
+                        <h2 class="fontFilter">Filter by Products</h2>
+                    </div>
+                </div>
+                <div>
+                    <div class="col-md-12 findNameInput">
+                        <div class="input-group">
+                            <input type="text" class="form-control" placeholder="Search by name">
+                            <span class="input-group-btn">
+                            <button class="btn btn-secondary" type="button"><span
+                                    class="glyphicon glyphicon-search"></span></button>
+                        </span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </section>
     </div>
+    <ul uib-pagination total-items="main.totalCompanies" ng-model="main.currentPage" items-per-page="main.itemsPerPage"
+        class="pagination-sm paginCstm"></ul>
+
 </div>
-</section>
 </body>
+<script  type="text/ng-template" id="showInfo.html">
+    <ng-include src="'js/modals/showInfo/showInfo.html'"></ng-include>
+</script>
 </html>

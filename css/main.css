@@ -3,7 +3,7 @@ body{
 }
 .layerBackground{
     width: 100vw;
-    height: 15vh;
+    height: 12vh;
 }
 .layer2{
     margin: 3vmin;
@@ -29,12 +29,60 @@ body{
 }
 section.companies{
     border: solid black medium;
-    height: 80vh;
-    width: 70vw;
+
+    width: 60vw;
     display: inline-block;
     margin: 1%;
 }
 #loading-bar-container {
-    height: 20px;
     position: relative;
+}
+.companyItem{
+    width: 90%;
+    margin: 1vmin 5vmin;
+    height: 5vh;
+    padding: 0px;
+    border:  solid black  ;
+}
+.companyItem:hover{
+    background-color: aqua;
+    cursor: pointer;
+}
+.companyName{
+    font-size: 2.8vmin;
+    font-weight: 700;
+    margin-left: 2vmin;
+}
+.bodyContent{
+    margin: 5vmin 10vmin;
+}
+.filterData{
+    border: solid black medium;
+    margin: 1%;
+    width: 20vw;
+    display: inline-block;
+}
+.paginCstm{
+    margin-left: 45%;
+}
+.findNameInput{
+    margin: 1%
+}
+.headerBorderProducts{
+    border-top: solid black;
+}
+.fontFilter{
+    font-size: 3vmin;
+}
+.contentCompanies{
+    display: flex;
+}
+.btn{
+    margin-bottom: 1%;
+}
+.myInput{
+    display: inline-block;
+    width: 50%;
+    margin-right: 1%;
+    margin-bottom: 1%;
 }
