@@ -8,25 +8,26 @@
 
             vm.companyName = vm.companies[myData.index].companyName;
             vm.companyGoods = vm.companies[myData.index].companyGoods;
-            vm.newCompanyName = vm.companyName; /*copy data becouse we need companyName to send request*/
+            vm.newCompanyName = vm.companyName;
+            /*copy data becouse we need companyName to send request*/
 
             vm.addGood = function () {
                 vm.companyGoods.push(vm.newGood);
                 vm.newGood = '';
             };
             vm.send = function () {
-
+                vm.sendedSuccessfully = false;
                 var body = {
                         companyName: vm.newCompanyName,
                         companyGoods: vm.companyGoods
-                    }
-                    ;
+                    };
                 var sendBody = JSON.stringify(body);
                 crudService.updateCompany(vm.companyName, sendBody).then(function (resp) {
                     console.log(resp);
                     vm.editMode = false;
                     myData.updateCompanies();
                     vm.companyName = vm.newCompanyName;
+                    vm.sendedSuccessfully = true;
                 });
             };
             vm.cancel = function () {

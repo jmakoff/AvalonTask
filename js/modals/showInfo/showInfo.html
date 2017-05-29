@@ -1,12 +1,17 @@
 <div class="modal-header">
     <button type="button" class="close" aria-hidden="true" ng-click="info.closeModal()">&times;</button>
     <h3 class="modal-title" id="modal-title">Information & Edit</h3>
+    <div class="alert alert-success alert-dismissable" ng-show="info.sendedSuccessfully">
+        <button type="button" class="close" data-dismiss="alert" aria-hidden="true" ng-click="info.sendedSuccessfully = false">&times;</button>
+        <strong>Great!</strong> Data sended successfully
+    </div>
 </div>
 <div class="modal-body" id="modal-body">
     <button ng-if="!info.editMode" ng-click="info.editMode = !info.editMode" class="btn btn-primary pull-right">
         <span class="glyphicon glyphicon-edit"></span></button>
     <button ng-if="info.editMode" ng-click="info.editMode = !info.editMode; info.save()" class="btn btn-primary pull-right">
        Save</button>
+
 
     <div ng-if="!info.editMode"><h2 >Company name: {{info.companyName}}</h2></div>
     <div ng-if="info.editMode"><h2>Company name: <input  type="text" class="form-control myInput" ng-model="info.newCompanyName" ></h2></div>
@@ -27,7 +32,6 @@
     <div ng-show="info.addGoods"><input type="text" class="form-control myInput" ng-model="info.newGood">
         <button class="btn btn-success" title="Add goods" ng-click="info.addGood()">Add</button>
     </div>
-
 
 </div>
 <div class="modal-footer">
