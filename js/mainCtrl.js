@@ -1,11 +1,14 @@
 (function () {
     angular
         .module('avalonApp')
-        .controller('mainCtrl', ['crudService', '$uibModal', '$scope', mainCtrl]);
+        .controller('mainCtrl', ['crudService', '$uibModal', '$scope', 'cfpLoadingBar', mainCtrl]);
 
 
-    function mainCtrl(crudService, $uibModal, $scope) {
+    function mainCtrl(crudService, $uibModal, $scope, cfpLoadingBar) {
         var vm = this;
+
+
+
 
         function getCompanies() {
             crudService.getItems('/companies').then(function (resp) {
@@ -15,7 +18,7 @@
         }
 
         getCompanies();
-        vm.findByName = function () {/*filtration here becouse had problems with pagination when tried to resolve with "| filter"*/
+        vm.findByName = function () {/*filtration here */
             var filteredArray = [];
             if (vm.nameToFilter) {
                 crudService.getItems('/companies').then(function (resp) { /*it used to work with full array*/
@@ -35,24 +38,25 @@
                 getCompanies()
             }
         };
-        vm.filterByProduct = function () {
+        vm.filterByProduct = function () {/*filtration here */
             var filteredArray = [];
             if (vm.productToSearch) {
                 crudService.getItems('/companies').then(function (resp) {
                     var companiesForFilter = resp.data;
                     var expr = new RegExp(vm.productToSearch, 'i');
                     companiesLoop:
-                    for (var i = 0; i < companiesForFilter.success.length; i++) {
-                        if (companiesForFilter.success[i].companyGoods) {/*test for companyGoods not null*/
-                            for (var j = 0; j < companiesForFilter.success[i].companyGoods.length; j++) {/*loop throw each company product*/
-                                if (expr.test(companiesForFilter.success[i].companyGoods[j])) {
-                                    filteredArray.push(companiesForFilter.success[i]);
-                                    continue companiesLoop; /*preventing of add two same objects*/
+                        for (var i = 0; i < companiesForFilter.success.length; i++) {
+                            if (companiesForFilter.success[i].companyGoods) {/*test for companyGoods not null*/
+                                for (var j = 0; j < companiesForFilter.success[i].companyGoods.length; j++) {/*loop throw each company product*/
+                                    if (expr.test(companiesForFilter.success[i].companyGoods[j])) {
+                                        filteredArray.push(companiesForFilter.success[i]);
+                                        continue companiesLoop;
+                                        /*preventing of add two same objects*/
+                                    }
                                 }
-                            }
 
+                            }
                         }
-                    }
                     vm.companies.success = filteredArray;
                 })
             }
@@ -103,12 +107,9 @@
             } else {
                 vm.btnIndex = index;
             }
-
         };
-
         vm.currentPage = 1;
         vm.itemsPerPage = 5;
-
 
         var scene = document.getElementById('scene');
         var parallax = new Parallax(scene)

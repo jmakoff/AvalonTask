@@ -22,7 +22,9 @@
 
     <script src="js/app.js"></script>
     <script src="js/constRest.js"></script>
+    <script src="js/loadingBarConf.js"></script>
     <script src="js/crudService.js"></script>
+
     <script src="js/mainCtrl.js"></script>
     <script src="js/modals/showInfo/showInfoController.js"></script>
 
@@ -41,6 +43,7 @@
     </div>
 </header>
 <div id="loading-bar-container"></div>
+
 <div class="bodyContent container-fluid">
     <div class="contentCompanies">
         <section class="companies">
@@ -55,10 +58,15 @@
                      ng-click="main.showBtns($index)"
                      ng-repeat="company in main.companies.success.slice(((main.currentPage-1)*main.itemsPerPage), ((main.currentPage)*main.itemsPerPage))">
                     <div class="row">
-                        <div class=" companyItem"><p class="companyName">{{company.companyName}}</p></div>
+                        <div class="col-md-11 col-lg-11 col-sm-10 col-xs-8 companyItem"><p class="companyName">
+                            {{company.companyName}}</p></div>
                         <div ng-show="main.btnIndex == $index" class="row">
-                            <button  ng-click="main.open(company.companyName, $index)" class="col-md-offset-2 col-md-3 btn btn-success btn-xs">Show Info & Edit company</button>
-                            <button class="col-md-offset-1 col-md-3 btn btn-danger btn-xs" ng-click="main.deleteCompany($index)">Delete company</button>
+                            <button ng-click="main.open(company.companyName, $index)"
+                                    class="col-md-offset-2 col-md-3 btn btn-success btn-xs">Show Info & Edit company
+                            </button>
+                            <button class="col-md-offset-1 col-md-3 btn btn-danger btn-xs"
+                                    ng-click="main.deleteCompany($index)">Delete company
+                            </button>
                         </div>
                     </div>
                 </div>
@@ -73,36 +81,53 @@
                         <h2 class="fontFilter">Filter by Name</h2>
                     </div>
                 </div>
-                <div>
-                    <div class="col-md-12 findNameInput">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search by name" ng-model="main.nameToFilter">
-                            <span class="input-group-btn">
+            </div>
+            <div class="row">
+                <div class="col-md-11  findNameInput"><!--here grid bootstrap system used-->
+                    <div class="input-group">
+                        <div class=" col-lg-9 col-md-9 col-sm-10 col-xs-10
+                        col-sm-offset-1 col-xs-offset-1 col-md-offset-1 col-lg-offset-1
+                        paddingFix">
+                            <input type="text" id="nameSearchInput" class="form-control" placeholder="Search by name"
+                                   ng-model="main.nameToFilter">
+                        </div>
+                        <span class="input-group-btn
+                        col-md-1 col-lg-1 col-sm-10 col-xs-10 col-sm-offset-1 col-xs-offset-1 col-md-offset-0 col-lg-offset-0
+                        paddingFix">
                             <button class="btn btn-secondary" type="button" ng-click="main.findByName()"><span
                                     class="glyphicon glyphicon-search"></span></button>
                         </span>
-                        </div>
+
                     </div>
                 </div>
             </div>
+
             <div class="container-fluid">
                 <div class="row">
                     <div class="col-md-12 text-center headerBorder headerBorderProducts">
                         <h2 class="fontFilter">Filter by Products</h2>
                     </div>
                 </div>
-                <div>
-                    <div class="col-md-12 findNameInput">
-                        <div class="input-group">
-                            <input type="text" class="form-control" placeholder="Search by product" ng-model="main.productToSearch">
-                            <span class="input-group-btn">
+            </div>
+            <div class="row">
+                <div class="col-md-11 findNameInput"> <!--here grid bootstrap system used-->
+                    <div class="input-group">
+                        <div class=" col-lg-9 col-md-9 col-sm-10 col-xs-10
+                        col-sm-offset-1 col-xs-offset-1 col-md-offset-1 col-lg-offset-1
+                        paddingFix">
+                            <input type="text" class="form-control" placeholder="Search by product"
+                                   ng-model="main.productToSearch">
+                        </div>
+                        <span class="input-group-btn
+                        col-md-1 col-lg-1 col-sm-10 col-xs-10 col-sm-offset-1 col-xs-offset-1 col-md-offset-0 col-lg-offset-0
+                        paddingFix">
                             <button class="btn btn-secondary" type="button" ng-click="main.filterByProduct()"><span
                                     class="glyphicon glyphicon-search"></span></button>
                         </span>
-                        </div>
                     </div>
                 </div>
             </div>
+
 
         </section>
     </div>
@@ -111,7 +136,7 @@
 
 </div>
 </body>
-<script  type="text/ng-template" id="showInfo.html">
+<script type="text/ng-template" id="showInfo.html">
     <ng-include src="'js/modals/showInfo/showInfo.html'"></ng-include>
 </script>
 </html>

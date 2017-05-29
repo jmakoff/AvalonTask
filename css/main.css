@@ -35,11 +35,28 @@ section.companies{
     margin: 1%;
 }
 #loading-bar-container {
+
+}
+#loading-bar{
+    position: absolute;
+    left: 25vw;
+    top: 45vh;
+    width: 50vw;
+    height: 10vh;
+    z-index: 100;
+    padding: 5vmin;
+    background-color: white;
+    border: 1px solid black ;
+
+}
+#loading-bar .bar {
     position: relative;
+    top:-2vh;
+    height: 4vh;
+
 }
 .companyItem{
-    width: 90%;
-    margin: 1vmin 5vmin;
+    margin: 1vmin 7vmin;
     height: 5vh;
     padding: 0px;
     border:  solid black  ;
@@ -66,7 +83,9 @@ section.companies{
     margin-left: 45%;
 }
 .findNameInput{
-    margin: 1%
+    margin: 1%;
+    margin-left: 5%;
+    margin-right: 5%;
 }
 .headerBorderProducts{
     border-top: solid black;
@@ -85,4 +104,8 @@ section.companies{
     width: 50%;
     margin-right: 1%;
     margin-bottom: 1%;
+}
+.paddingFix{
+    padding-right: 0px ;
+    padding-left: 0px;
 }
